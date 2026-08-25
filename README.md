@@ -3,12 +3,6 @@
 A 5-page test-authoring tool built for the Frontend Developer assignment: log in, browse a
 dashboard of tests, create/edit test details, author MCQ questions, and publish.
 
-## Stack
-
-React 19 + TypeScript + Vite, React Router, TanStack Query, Zustand, Axios, React Hook Form +
-Zod, Tailwind CSS v4, Tiptap. See [`TECHNICAL_DECISIONS.md`](./TECHNICAL_DECISIONS.md) for the
-reasoning behind each choice and the known gaps between the documented API and the UI.
-
 ## Getting started
 
 ```bash
@@ -63,3 +57,13 @@ src/
   components/layout/  app shell + route guard
   features/       one folder per page/flow (auth, dashboard, testForm, questions, publish)
 ```
+
+
+<img width="1791" height="1025" alt="Screenshot 2026-08-25 at 6 35 47 PM" src="https://github.com/user-attachments/assets/006e65c1-13c2-4974-a772-8803fd235552" />
+<img width="1791" height="552" alt="Screenshot 2026-08-25 at 6 40 53 PM" src="https://github.com/user-attachments/assets/8e185b24-96f0-4646-8599-713f24b03704" />
+<img width="1794" height="1026" alt="Screenshot 2026-08-25 at 6 42 10 PM" src="https://github.com/user-attachments/assets/716b6b67-7c19-48f4-a0a2-717a6bd4d08e" />
+<img width="1792" height="1016" alt="Screenshot 2026-08-25 at 6 42 49 PM" src="https://github.com/user-attachments/assets/5274f22e-4a9d-4971-9d01-00e3cc2cc403" />
+<img width="1788" height="1028" alt="Screenshot 2026-08-25 at 6 43 01 PM" src="https://github.com/user-attachments/assets/def418fb-4540-4d20-bb73-9abd22c45eb1" />
+<img width="1798" height="1025" alt="Screenshot 2026-08-25 at 6 43 11 PM" src="https://github.com/user-attachments/assets/29fd13ca-edff-43e0-843c-fb4f411e33f3" />
+
+
