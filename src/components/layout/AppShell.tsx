@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import type { ReactNode } from 'react'
 
@@ -16,8 +17,22 @@ export function AppShell({
   const user = useAuthStore((state) => state.user)
   const clearAuth = useAuthStore((state) => state.clearAuth)
   const navigate = useNavigate()
+  const [menuOpen, setMenuOpen] = useState(false)
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    if (!menuOpen) return
+    function handleClickOutside(event: MouseEvent) {
+      if (!menuRef.current?.contains(event.target as Node)) {
+        setMenuOpen(false)
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
+  }, [menuOpen])
 
   function handleLogout() {
+    setMenuOpen(false)
     clearAuth()
     navigate('/login', { replace: true })
   }
@@ -38,8 +53,12 @@ export function AppShell({
               <path d="M10 2a6 6 0 00-6 6v3.1L2.6 14a1 1 0 00.9 1.5h13a1 1 0 00.9-1.5L16 11.1V8a6 6 0 00-6-6zm0 16a2.2 2.2 0 002.2-2H7.8A2.2 2.2 0 0010 18z" />
             </svg>
           </button>
-          <div className="group relative">
-            <button className="flex items-center gap-2">
+          <div className="relative" ref={menuRef}>
+            <button
+              type="button"
+              onClick={() => setMenuOpen((open) => !open)}
+              className="flex items-center gap-2"
+            >
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-100 text-sm font-semibold text-primary-600">
                 {(user?.name ?? user?.userId ?? 'A').slice(0, 1).toUpperCase()}
               </span>
@@ -52,14 +71,16 @@ export function AppShell({
                 </span>
               </span>
             </button>
-            <div className="invisible absolute right-0 z-10 mt-2 w-36 rounded-xl border border-ink-300/50 bg-white p-1 opacity-0 shadow-lg transition-opacity group-hover:visible group-hover:opacity-100">
-              <button
-                onClick={handleLogout}
-                className="w-full rounded-lg px-3 py-2 text-left text-sm text-rose-600 hover:bg-rose-50"
-              >
-                Log out
-              </button>
-            </div>
+            {menuOpen && (
+              <div className="absolute right-0 z-10 mt-2 w-36 rounded-xl border border-ink-300/50 bg-white p-1 shadow-lg">
+                <button
+                  onClick={handleLogout}
+                  className="w-full rounded-lg px-3 py-2 text-left text-sm text-rose-600 hover:bg-rose-50"
+                >
+                  Log out
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </header>
