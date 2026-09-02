@@ -1,6 +1,6 @@
 # PrepRoute — Test Management App
 
-A 5-page test-authoring tool built for the Frontend Developer assignment: log in, browse a
+A 5-page test-authoring tool: log in, browse a
 dashboard of tests, create/edit test details, author MCQ questions, and publish.
 
 ## Getting started
